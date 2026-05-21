@@ -18,4 +18,5 @@ public interface Identificable {
 
     // TODO:
     // Declarar el método getCodigo().
+    int getCodigo();
 }

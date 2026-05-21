@@ -1,5 +1,9 @@
 package com.techlab.articulo;
 
+import com.techlab.articulo.model.Articulo;
+import com.techlab.articulo.model.Categoria;
+import com.techlab.articulo.repository.Repositorio;
+
 // ============================================================
 // CONSIGNA GENERAL DE LA PREENTREGA
 // ============================================================
@@ -105,13 +109,55 @@ public class App {
 
         // TODO:
         // Crear aquí los repositorios genéricos.
+        Repositorio<Articulo> repoArticulos = new Repositorio<>();
+        Repositorio<Categoria> repoCategorias = new Repositorio<>();
 
         // TODO:
         // Crear aquí los menús y pasarles lo que necesiten por constructor.
+        MenuArticulos menuArticulos = new MenuArticulos(scanner, repoArticulos, repoCategorias);
+        MenuCategorias menuCategorias = new MenuCategorias(scanner, repoCategorias, repoArticulos);
 
         // TODO:
         // Implementar el menú principal de la aplicación.
 
+        int opcion = -1;
+        
+        do {
+            System.out.println("\n==========================================");
+            System.out.println("   SISTEMA DE GESTIÓN DE TIENDA (POO)     ");
+            System.out.println("==========================================");
+            System.out.println("1 - Menú de Artículos");
+            System.out.println("2 - Menú de Categorías");
+            System.out.println("0 - Salir");
+            System.out.println("==========================================");
+
+            System.out.print("Ingrese una opción: ");
+            
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } 
+            catch (NumberFormatException e) {
+                System.out.println("Error: debe ingresar un número válido.");
+                opcion = -1; 
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    menuArticulos.ejecutar();
+                    break;
+                case 2:
+                    menuCategorias.ejecutar();
+                    break;
+                case 0:
+                    System.out.println("\nCerrando el sistema.");
+                    break;
+                default:
+                    System.out.println("\nError: la opción ingresada no es válida.");
+            }
+
+        } 
+        while (opcion != 0);
         scanner.close();
     }
 }

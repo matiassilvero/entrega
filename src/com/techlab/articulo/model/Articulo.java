@@ -52,10 +52,50 @@ public abstract class Articulo implements Calculable, Identificable {
     // TODO:
     // Crear constructor completo.
 
+    public Articulo(int codigo, String nombre, double precio, Categoria categoria) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+    }
+
     // TODO:
     // Crear getters y setters.
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public abstract String getTipoArticulo();
+
+    @Override
+    public int getCodigo() {
+        return codigo;
+    }
 
     @Override
     public String toString() {
@@ -63,6 +103,7 @@ public abstract class Articulo implements Calculable, Identificable {
         // Mostrar todos los datos comunes del artículo.
         // Sugerencia:
         // incluir también tipo y precio final.
-        return "";
+        return "Código: " + codigo + ". Nombre: " + nombre + ". Tipo: " + getTipoArticulo() + ". Precio Base: $" + precio + 
+               ". Precio Final: $" + calcularPrecioFinal() + ". Categoría: " + categoria.getNombre();
     }
 }
